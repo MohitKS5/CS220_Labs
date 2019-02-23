@@ -1,1 +1,4 @@
-**/\![*.v .gitignore]
+#ignore all kind of files
+*.*
+#except verilog files
+!*.v
