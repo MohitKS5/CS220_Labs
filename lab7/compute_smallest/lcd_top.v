@@ -25,12 +25,20 @@ module lcd_output_top(
 		num4[3:0] = holder[3:0];
 	end
 
+	initial begin
+		num1<=4'b0;
+		num2<=4'b0;
+		num3<=4'b0;
+		num4<=4'b0;
+		min_index<=2'b0;
+	end
+
 	wire [7:0] charset_index_num1, charset_index_num2, charset_index_num3, charset_index_num4, charset_index_output;
 	n_bit_adder #(8) A1({5'h0,num1}, 8'h30, charset_index_num1);
 	n_bit_adder #(8) A2({5'h0,num2}, 8'h30, charset_index_num2);
 	n_bit_adder #(8) A3({5'h0,num3}, 8'h30, charset_index_num3);
 	n_bit_adder #(8) A4({5'h0,num4}, 8'h30, charset_index_num4);
-	n_bit_adder #(8) A5({5'h0,num4}, 8'h30, charset_index_output);
+	n_bit_adder #(8) A5({6'h0,min_index}, 8'h30, charset_index_output);
 
 	n_bit_comparator #(3) C1(num1,min,less[0],greater[0],equality[0]);
 	n_bit_comparator #(3) C2(num2,min,less[1],greater[1],equality[1]);
