@@ -130,22 +130,22 @@ module rotary_adder (
 			case(direction)
 			`EAST: begin
 				num1 <= x;
-				num2 <= {2'b0,steps};
+				num2 <= {2'b0,holder[3:2]};
 				cin<=0;
   			end
 			`WEST: begin
 				num1 <= x;
-				num2 <= {2'b0,steps};
+				num2 <= {2'b0,holder[3:2]};
 				cin<=1;
 			end
 			`NORTH: begin
 				num1 <= y;
-				num2 <= {2'b0,steps};
+				num2 <= {2'b0,holder[3:2]};
 				cin<=0;
 			end
 			`SOUTH: begin
 				num1 <= y;
-				num2 <= {2'b0,steps};
+				num2 <= {2'b0,holder[3:2]};
 				cin<=1;
 			end
 			endcase
