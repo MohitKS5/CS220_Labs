@@ -61,10 +61,12 @@ module shaft_encoder(
 	always @(posedge clk) begin			
 		if((prev_rot_event == 0) & (rotation_event == 1)) begin
 			if (rotation_direction == 1) begin
-				rotation_state <= rotation_state+1;
+				if(rotation_state<3'b111) rotation_state <= rotation_state+1;
+				else rotation_state <=0;
 			end
 			else begin
-				rotation_state <= rotation_state-1;
+				if(rotation_state>3'b0) rotation_state <= rotation_state-1;
+				rotation_state<=5;
 			end	
 		end
 		prev_rot_event <= rotation_event;	
