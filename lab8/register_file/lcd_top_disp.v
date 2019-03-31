@@ -4,7 +4,7 @@ module lcd_output_top(
 	// LCD ports
 	input clk,
 	output lcd_rs, lcd_rw, lcd_e,
-	output [3:0] data,
+	output [0:3] data,
 
 	// LCD mode and lines
 	input [1:0] mode,
@@ -12,8 +12,8 @@ module lcd_output_top(
 	input [15:0] rdA,rdB,wd
     );
 
-	reg [127:0] LINE1;
-  	reg [127:0] LINE2;
+	reg [0:127] LINE1;
+  	reg [0:127] LINE2;
 	always @(posedge clk) begin
 	    if(mode==2'b00) begin
 	      LINE1 <= "ACCEPTING       ";
@@ -34,6 +34,6 @@ module lcd_output_top(
 	end
 	
 
-	lcd_welcome LCD ("","",
+	lcd_welcome LCD (LINE1,LINE2,
 			 clk, lcd_rs, lcd_rw, lcd_e, data[0], data[1], data[2], data[3]);
 endmodule
